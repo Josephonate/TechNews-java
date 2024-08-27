@@ -1,8 +1,8 @@
 package com.technews.tech_news_java_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -33,16 +33,16 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
-    public User(Integer id, String username, String email, String password, boolean loggedIn, List<Post> posts, List<Vote> votes, List<Comment> comments) {
+    public User() {
+    }
+
+    public User(Integer id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.loggedIn = loggedIn;
-        this.posts = posts;
-        this.votes = votes;
-        this.comments = comments;
     }
+
 
     public Integer getId() {
         return id;
@@ -122,6 +122,7 @@ public class User implements Serializable {
                 Objects.equals(getVotes(), user.getVotes()) &&
                 Objects.equals(getComments(), user.getComments());
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getUsername(), getEmail(), getPassword(), isLoggedIn(), getPosts(), getVotes(), getComments());

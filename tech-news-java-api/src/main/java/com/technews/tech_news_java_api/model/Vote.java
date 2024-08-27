@@ -1,9 +1,7 @@
 package com.technews.tech_news_java_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -52,7 +50,7 @@ public class Vote implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Vote vote)) return false;
-        Vote vote = (Vote) o;
+//        Vote vote = (Vote) o;
         return Objects.equals(getId(), vote.getId()) &&
                 Objects.equals(getUserId(), vote.getUserId()) &&
                 Objects.equals(getPostId(), vote.getPostId());

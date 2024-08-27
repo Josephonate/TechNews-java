@@ -1,9 +1,7 @@
 package com.technews.tech_news_java_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,12 +10,16 @@ import java.util.Objects;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "comment")
 public class Comment implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String commentText;
     private Integer userId;
     private Integer postId;
+
+    public Comment() {
+    }
 
     public Comment(Integer id, String commentText, Integer userId, Integer postId) {
         this.id = id;
@@ -68,6 +70,7 @@ public class Comment implements Serializable {
                 Objects.equals(getUserId(), comment.getUserId()) &&
                 Objects.equals(getPostId(), comment.getPostId());
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getCommentText(), getUserId(), getPostId());
